@@ -4,8 +4,8 @@ A demo Flask REST API for my exam.
 It provides endpoints for creation, update, list and deletion of tickets.
 
 The aim of this app is to server as back end for a Watson Assistant(WA) chatbot. WA can communicate with REST API app via custom extensions. 
-A custom extension can be created using app's Swagger documentation(specificaly Open API3). So in the app creation is used [flask_restx](https://flask-restx.readthedocs.io/en/latest/) 
-Flask extension for swagger documentation. 
+A custom extension can be created using app's Swagger documentation(specificaly Open API3). So in the app is used [flask_restx](https://flask-restx.readthedocs.io/en/latest/) 
+Flask extension for the swagger documentation generation. 
 
 The application uses a DB2 cloud service for persitant store.
 
