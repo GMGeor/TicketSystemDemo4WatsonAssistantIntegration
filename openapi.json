@@ -1,0 +1,293 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Ticket API",
+    "description": "A simple Ticket API to communicate with Watson Assistant chatbot via custom extension (build on Open API 3 documentation)",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://wa2ticketapi.eu-gb.cf.appdomain.cloud/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "tickets",
+      "description": "Tickets operations"
+    }
+  ],
+  "paths": {
+    "/tickets/ticket/all/": {
+      "get": {
+        "tags": [
+          "tickets"
+        ],
+        "operationId": "list_tickets",
+        "parameters": [
+          {
+            "name": "X-Fields",
+            "in": "header",
+            "description": "An optional fields mask",
+            "schema": {
+              "type": "string",
+              "format": "mask"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Ticket"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tickets/ticket/create/": {
+      "post": {
+        "tags": [
+          "tickets"
+        ],
+        "operationId": "create_ticket",
+        "parameters": [
+          {
+            "name": "X-Fields",
+            "in": "header",
+            "description": "An optional fields mask",
+            "schema": {
+              "type": "string",
+              "format": "mask"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TicketBase"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TicketBase"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "payload"
+      }
+    },
+    "/tickets/ticket/delete/{pk}/": {
+      "delete": {
+        "tags": [
+          "tickets"
+        ],
+        "operationId": "delete_ticket",
+        "parameters": [
+          {
+            "name": "pk",
+            "in": "path",
+            "description": "The ticket unique identifier",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Ticket deleted",
+            "content": {}
+          },
+          "404": {
+            "description": "Ticket not found",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/tickets/ticket/update/priority/{pk}/": {
+      "put": {
+        "tags": [
+          "tickets"
+        ],
+        "operationId": "update_ticket_priority",
+        "parameters": [
+          {
+            "name": "pk",
+            "in": "path",
+            "description": "The ticket unique identifier",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ticket"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Ticket updated",
+            "content": {}
+          },
+          "404": {
+            "description": "Ticket not found",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "payload"
+      }
+    },
+    "/tickets/ticket/update/status/{pk}/": {
+      "put": {
+        "tags": [
+          "tickets"
+        ],
+        "operationId": "update_ticket_status",
+        "parameters": [
+          {
+            "name": "pk",
+            "in": "path",
+            "description": "The ticket unique identifier",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ticket"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Ticket updated",
+            "content": {}
+          },
+          "404": {
+            "description": "Ticket not found",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "payload"
+      }
+    },
+    "/tickets/ticket/{pk}/": {
+      "get": {
+        "tags": [
+          "tickets"
+        ],
+        "operationId": "get_ticket",
+        "parameters": [
+          {
+            "name": "pk",
+            "in": "path",
+            "description": "The ticket unique identifier",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "X-Fields",
+            "in": "header",
+            "description": "An optional fields mask",
+            "schema": {
+              "type": "string",
+              "format": "mask"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Ticket"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Ticket not found",
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "TicketBase": {
+        "required": [
+          "DESCRIPTION",
+          "TITLE"
+        ],
+        "type": "object",
+        "properties": {
+          "TITLE": {
+            "type": "string"
+          },
+          "DESCRIPTION": {
+            "type": "string"
+          }
+        }
+      },
+      "Ticket": {
+        "required": [
+          "STATUS"
+        ],
+        "type": "object",
+        "properties": {
+          "STATUS": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "responses": {
+      "MaskError": {
+        "description": "When any error occurs on mask",
+        "content": {}
+      },
+      "ParseError": {
+        "description": "When a mask can't be parsed",
+        "content": {}
+      }
+    }
+  }
+}
