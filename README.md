@@ -1,4 +1,4 @@
-# TicketSystemDemo4WatsonAssistantIntegration REST API
+# Ticket System Demo for Watson Assistant Integration REST API
 
 A demo Flask REST API for my exam. 
 It provides endpoints for creation, update, list and deletion of tickets.
@@ -9,3 +9,4 @@ Flask extension for swagger documentation.
 
 The application uses a DB2 cloud service for persitant store. 
 It is deployed to a Cloud Foundry service instance which expose its swager documentation and can be seen [here](https://wa2ticketapi.eu-gb.cf.appdomain.cloud/)
+You can see preview of the chatbot [here](https://web-chat.global.assistant.watson.appdomain.cloud/preview.html?backgroundImageURL=https%3A%2F%2Feu-gb.assistant.watson.cloud.ibm.com%2Fpublic%2Fimages%2Fhttps%3A~s~ssoftuni.bg~strainings~s3815~sweb-applications-with-flask-june-2022&integrationID=0a994076-7b3b-418b-8a25-a06ffb293549&region=eu-gb&serviceInstanceID=76b15cb2-6024-46a5-8975-bb6f02b7194e)
